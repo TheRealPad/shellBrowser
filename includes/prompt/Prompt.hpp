@@ -9,11 +9,13 @@ namespace ShellBrowser {
             Prompt();
             Prompt(std::string prompt);
             ~Prompt();
-            void run();
+            bool readUserInput();
+            std::string getInput();
             void welcome();
 
         private:
             std::string _prompt;
+            std::string _userInput;
     };
 }
 

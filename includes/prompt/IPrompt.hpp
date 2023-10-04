@@ -5,7 +5,8 @@ namespace ShellBrowser {
     class IPrompt {
         public:
             virtual ~IPrompt() = default;
-            virtual void run() = 0;
+            virtual bool readUserInput() = 0;
+            virtual std::string getInput() = 0;
             virtual void welcome() = 0;
     };
 }

@@ -15,7 +15,9 @@ bool shellBrowser()
     init(prompt);
     prompt->welcome();
     try {
-        prompt->run();
+        while (prompt->readUserInput()) {
+            std::cout << prompt->getInput() << std::endl;
+        }
     } catch(const std::exception& e) {
         std::cerr << e.what() << '\n';
         return false;

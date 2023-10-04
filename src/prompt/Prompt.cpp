@@ -17,16 +17,15 @@ ShellBrowser::Prompt::~Prompt()
 {
 }
 
-void ShellBrowser::Prompt::run()
+bool ShellBrowser::Prompt::readUserInput()
 {
-    std::string input;
-
     std::cout << this->_prompt;
-    while (std::getline(std::cin, input)) {
-        std::cout << input << std::endl;
-        std::cout << this->_prompt;
-        std::cout << getRequest("www.google.com/search?q=pad") << std::endl;
-    }
+    return std::getline(std::cin, this->_userInput) ? true : false;
+}
+
+std::string ShellBrowser::Prompt::getInput()
+{
+    return this->_userInput;
 }
 
 void ShellBrowser::Prompt::welcome()
