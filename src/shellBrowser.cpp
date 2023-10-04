@@ -1,4 +1,5 @@
 #include <iostream>
+#include <memory>
 #include "prompt/IPrompt.hpp"
 #include "prompt/Prompt.hpp"
 #include "browser/Browser.hpp"
@@ -15,12 +16,16 @@ bool shellBrowser()
 
     init(prompt);
     prompt->welcome();
-    try {
-        while (prompt->readUserInput() && prompt->getInput() != "exit") {
-            //browser.research(prompt->getInput());
+    try
+    {
+        while (prompt->readUserInput() && prompt->getInput() != "exit")
+        {
+            // browser.research(prompt->getInput());
             browser.research("http://example.com/");
         }
-    } catch(const std::exception& e) {
+    }
+    catch (const std::exception &e)
+    {
         std::cerr << e.what() << '\n';
         return false;
     }
