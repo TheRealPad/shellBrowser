@@ -1,20 +1,25 @@
-# only for cmake --version >= 3.5.1
-cmake_minimum_required(VERSION 3.5.1)
+cmake_minimum_required(VERSION 3.17)
 
-# project name
-project(shellBrowser)
+cmake_policy(VERSION 3.17)
 
-# creates the variable EXEC and sets it to hello
+set(CMAKE_BUILD_TYPE Release)
 set(EXEC browser)
 
-# set the C++14 standard
-set(CMAKE_CXX_STANDARD 14)
+project(${EXEC} VERSION 1.0
+        DESCRIPTION "Browser for shell"
+        LANGUAGES CXX)
 
-# I../includes
-include_directories(includes)
+set(CMAKE_CXX_STANDARD 20)
 
-# puts all .cpp files inside src to the SOURCES variable
-file(GLOB SOURCES src/main.cpp)
+set(SRCS
+        src/main.cpp
+        src/shellBrowser.cpp)
 
-# compiles the files defined by SOURCES to generante the executable defined by EXEC
-add_executable(${EXEC} ${SOURCES})
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
+
+
+add_executable(${EXEC} ${SRCS})
+
+target_include_directories(${EXEC} PUBLIC includes)
+
+set_target_properties(${EXEC} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR})
