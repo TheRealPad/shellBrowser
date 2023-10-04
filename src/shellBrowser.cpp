@@ -2,10 +2,17 @@
 #include "prompt/IPrompt.hpp"
 #include "prompt/Prompt.hpp"
 
+void init(std::unique_ptr<ShellBrowser::IPrompt> &prompt)
+{
+    prompt = std::unique_ptr<ShellBrowser::IPrompt>(new ShellBrowser::Prompt("=> "));
+}
+
 bool shellBrowser()
 {
-    std::unique_ptr<ShellBrowser::IPrompt> prompt = std::unique_ptr<ShellBrowser::IPrompt>(new ShellBrowser::Prompt("=> "));
+    std::unique_ptr<ShellBrowser::IPrompt> prompt;
+
     
+    init(prompt);
     prompt->welcome();
     try {
         prompt->run();
