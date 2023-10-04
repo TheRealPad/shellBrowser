@@ -2,9 +2,9 @@ name: CMake Build and test
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "master" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "master" ]
 
 env:
   BUILD_TYPE: Release
@@ -73,7 +73,9 @@ jobs:
         run: |
           cd build
           cmake --build . --config ${{ matrix.config.build_type }}
-      - name: Run linters
-        uses: wearerequired/lint-action@v2
-        with:
-          clang_format: true
+      - name: Tests
+        shell: bash
+        run: |
+          cmake .
+          make unit_test
+          ./unit_test
