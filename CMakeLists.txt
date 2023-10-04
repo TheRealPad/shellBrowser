@@ -30,13 +30,7 @@ add_executable(${EXEC} ${MAIN} ${SRCS})
 target_include_directories(${EXEC} PUBLIC includes)
 set_target_properties(${EXEC} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR})
 
-find_package(Boost COMPONENTS unit_test_framework REQUIRED)
-
-# Incluez le répertoire d'en-têtes Boost dans les fichiers source
-include_directories(${Boost_INCLUDE_DIRS})
-
 add_executable(${TEST_EXEC} ${TEST_SRCS})
 target_include_directories(${TEST_EXEC} PUBLIC includes)
-target_link_libraries(${TEST_EXEC} ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY})
 add_test(NAME ${TEST_EXEC}
          COMMAND ${TEST_EXEC})
