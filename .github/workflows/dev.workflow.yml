@@ -18,3 +18,8 @@ jobs:
 
       - name: Build the project
         run: cmake .
+
+      - name: Test the project
+        run: |
+          make unit_test
+          ./unit_test
