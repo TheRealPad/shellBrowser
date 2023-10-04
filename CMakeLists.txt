@@ -13,10 +13,12 @@ set(CMAKE_CXX_STANDARD 20)
 
 set(SRCS
         src/main.cpp
-        src/shellBrowser.cpp)
+        src/shellBrowser.cpp
+        src/prompt/Prompt.cpp
+        src/error/Error.cpp
+        )
 
 set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
-
 
 add_executable(${EXEC} ${SRCS})
 
