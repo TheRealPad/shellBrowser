@@ -3,7 +3,7 @@ name: CMake Build and test
 on:
   push:
     branches:
-      - develop
+      - master
 
 jobs:
   build-project:
