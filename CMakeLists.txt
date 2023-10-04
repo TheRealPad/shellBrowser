@@ -16,6 +16,7 @@ set(SRCS
         src/shellBrowser.cpp
         src/prompt/Prompt.cpp
         src/error/Error.cpp
+        src/utils/getRequest.cpp
         )
 
 set(MAIN

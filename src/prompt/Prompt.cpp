@@ -1,6 +1,7 @@
 #include <iostream>
 #include "prompt/Prompt.hpp"
 #include "error/Error.hpp"
+#include "utils.hpp"
 
 ShellBrowser::Prompt::Prompt()
 {
@@ -24,6 +25,7 @@ void ShellBrowser::Prompt::run()
     while (std::getline(std::cin, input)) {
         std::cout << input << std::endl;
         std::cout << this->_prompt;
+        std::cout << getRequest("www.google.com/search?q=pad") << std::endl;
     }
 }
 
