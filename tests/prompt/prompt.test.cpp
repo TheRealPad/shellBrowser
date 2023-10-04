@@ -1,10 +1,12 @@
-#include <iostream>
-#include <cassert>
+#define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
+#include "test/doctest.h"
 
-int main() {
-    int a = 5;
-    int b = 6;
-    assert(a == b && "a n'est pas égal à b");
-    std::cout << "Tous les tests ont réussi !" << std::endl;
-    return 0;
+int addition(int a, int b) {
+    return a + b;
+}
+
+TEST_CASE("Addition test") {
+    CHECK(addition(2, 3) == 6);
+    CHECK(addition(-1, 1) == 0);
+    CHECK(addition(0, 0) == 0);
 }
