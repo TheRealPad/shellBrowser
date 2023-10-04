@@ -6,7 +6,7 @@ int addition(int a, int b) {
 }
 
 TEST_CASE("Addition test") {
-    CHECK(addition(2, 3) == 6);
+    CHECK(addition(2, 3) == 5);
     CHECK(addition(-1, 1) == 0);
     CHECK(addition(0, 0) == 0);
 }
