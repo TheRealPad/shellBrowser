@@ -16,9 +16,11 @@ set(CMAKE_CXX_STANDARD 20)
 set(SRCS
         src/shellBrowser.cpp
         src/prompt/Prompt.cpp
+        src/prompt/NcursePrompt.cpp
         src/browser/Browser.cpp
         src/error/Error.cpp
         src/utils/getRequest.cpp
+        src/utils/formatUrl.cpp
 )
 
 set(MAIN
@@ -33,6 +35,7 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 add_executable(${EXEC} ${MAIN} ${SRCS})
 target_include_directories(${EXEC} PUBLIC includes)
 target_link_libraries(${EXEC} PRIVATE curl)
+target_link_libraries(${EXEC} PRIVATE -lncurses)
 set_target_properties(${EXEC} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR})
 
 add_executable(${TEST_EXEC} ${TEST_SRCS})
