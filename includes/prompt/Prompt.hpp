@@ -11,8 +11,9 @@ namespace ShellBrowser {
             ~Prompt();
             bool readUserInput();
             std::string getInput();
-            void start();
-            void end();
+            void welcome();
+            std::string displayUrls(std::vector<std::string> const &urls);
+            void displayWebPage(std::string const &url);
 
         private:
             std::string _prompt;

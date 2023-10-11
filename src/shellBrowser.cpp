@@ -1,34 +1,51 @@
 #include <iostream>
 #include <memory>
-#include <ncurses.h>
 #include "prompt/IPrompt.hpp"
 #include "prompt/Prompt.hpp"
 #include "prompt/NcursePrompt.hpp"
 #include "browser/Browser.hpp"
+#include "shellBrowser.hpp"
 
-void init(std::unique_ptr<ShellBrowser::IPrompt> &prompt)
+void init(std::unique_ptr<ShellBrowser::IPrompt> &prompt, std::string const &params)
 {
-    prompt = std::unique_ptr<ShellBrowser::IPrompt>(new ShellBrowser::NcursePrompt("=> "));
+    if (params == NO_LIB)
+        prompt = std::unique_ptr<ShellBrowser::IPrompt>(new ShellBrowser::Prompt("=> "));
+    else if (params == NCURSES_LIB)
+        prompt = std::unique_ptr<ShellBrowser::IPrompt>(new ShellBrowser::NcursePrompt("=> "));
+    else
+        prompt = std::unique_ptr<ShellBrowser::IPrompt>(new ShellBrowser::Prompt("=> "));
 }
 
-bool shellBrowser()
+void help()
+{
+    std::cout << "Welcome to shellBrowser!" << std::endl;
+    std::cout << "run:\t./shellBrowser [lib]" << std::endl << std::endl;
+    std::cout << "\tnothing or unknow: run directly on the shell" << std::endl;
+    std::cout << "\t--ncurses: use ncurses" << std::endl;
+}
+
+bool shellBrowser(std::string const &params)
 {
     std::unique_ptr<ShellBrowser::IPrompt> prompt;
     ShellBrowser::Browser browser;
+    std::string selectedUrl;
 
-    init(prompt);
-    prompt->start();
+    if (params == "--help" || params == "-h") {
+        help();
+        return true;
+    }
+    init(prompt, params);
+    prompt->welcome();
     try {
         while (prompt->readUserInput() && prompt->getInput() != "exit") {
             browser.research(prompt->getInput());
-            for (int i = 0; i != browser.getUrls().size(); ++i)
-                std::cout << browser.getUrls().at(i) << std::endl;
+            selectedUrl = prompt->displayUrls(browser.getUrls());
+            if (selectedUrl.size())
+                prompt->displayWebPage(selectedUrl);
         }
     } catch (const std::exception &e) {
         std::cerr << e.what() << '\n';
-        prompt->end();
         return false;
     }
-    prompt->end();
     return true;
 }
