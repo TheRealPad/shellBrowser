@@ -38,6 +38,8 @@ bool shellBrowser(std::string const &params)
     prompt->welcome();
     try {
         while (prompt->readUserInput() && prompt->getInput() != "exit") {
+            if (prompt->getInput() == "")
+                continue;
             browser.research(prompt->getInput());
             selectedUrl = prompt->displayUrls(browser.getUrls());
             if (selectedUrl.size())
