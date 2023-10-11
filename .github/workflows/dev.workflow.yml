@@ -21,7 +21,7 @@ jobs:
         uses: threeal/cmake-action@v1.3.0
 
       - name: Install lilbcurl
-        run: sudo apt-get install libcurl-dev
+        run: sudo apt-get install make cmake gcc git libcurl4-openssl-dev
 
       - name: Build the project
         run: cmake .
