@@ -12,3 +12,4 @@ _deps
 browser
 .vscode/
 unit_test
+shellBrowser

@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - develop
+      - fix-github-action
   pull_request:
     branches:
       - develop
@@ -18,6 +19,9 @@ jobs:
 
       - name: Configure the project
         uses: threeal/cmake-action@v1.3.0
+
+      - name: Install lilbcurl
+        run: sudo apt-get install libcurl-dev
 
       - name: Build the project
         run: cmake .
