@@ -1,14 +1,15 @@
-#ifndef PROMPT_HPP_
-#define PROMPT_HPP_
+#ifndef NCURSEPROMPT_HPP_
+#define NCURSEPROMPT_HPP_
 
+#include <string>
 #include "IPrompt.hpp"
 
 namespace ShellBrowser {
-    class Prompt : public ShellBrowser::IPrompt {
+    class NcursePrompt : public ShellBrowser::IPrompt {
         public:
-            Prompt();
-            Prompt(std::string prompt);
-            ~Prompt();
+            NcursePrompt();
+            NcursePrompt(std::string prompt);
+            ~NcursePrompt();
             bool readUserInput();
             std::string getInput();
             void welcome();
@@ -18,7 +19,8 @@ namespace ShellBrowser {
         private:
             std::string _prompt;
             std::string _userInput;
+            unsigned int _selectedUrl;
     };
 }
 
-#endif /* !PROMPT_HPP_ */
+#endif /* !NCURSEPROMPT_HPP_ */
